@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="route ==='main'">메인화면</div>
+        <div v-else-if="route ==='sub'">서브화면</div>
+        <div v-else-if="route ==='assist'">보조화면</div>
+        <div v-else>기타화면</div>
+        <div>{{word}}</div>
+        <form v-on:submit="onSubmitForm">
+            <input type="text" v-model="value" ref="answer">
+            <button type="submit">입력</button>
+        </form>
+        <div>{{result}}</div>        
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el:"#root",
+        data:{
+            word: '제로초',            
+            result: '',
+            value: '',
+            route: 'assist',
+        },
+        methods:{
+            onSubmitForm(e){
+                e.preventDefault();
+                let lastWord = this.word[this.word.length -1];
+                let firstWord = this.value[0];
+                console.log(lastWord, firstWord);
+                if(lastWord === firstWord) {
+                    this.result = '굿!!';
+                    this.word = this.value;                    
+                } else {
+                    this.result = '땡!! 다시 입력해보세요.';                    
+                }
+                this.value = '';             
+                this.$refs.answer.focus();
+            },
+        },
+    });
+</script>
+</html>

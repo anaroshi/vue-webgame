@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <word-relay start_word="제로초"></word-relay>
+        <word-relay start_word="초밥"></word-relay>
+        <word-relay start_word="바보"></word-relay>
+    </div>
+</body>
+<script>
+    Vue.component('word-relay', { // 전역(golobal) 컴포넌트
+        template : `
+            <div>
+                <div>{{word}}</div>
+                <form v-on:submit="onSubmitForm">
+                    <input type="text" v-model="value" ref="answer">
+                    <button type="submit">입력</button>
+                </form>
+                <div>{{result}}</div>
+            </div>    
+        `,
+        props: ['start_word'],
+        data() {
+            return {
+                word: this.start_word,            
+                result: '',
+                value: '',
+            };
+        },
+        methods:{
+            onSubmitForm(e){
+                e.preventDefault();
+                let lastWord = this.word[this.word.length -1];
+                let firstWord = this.value[0];
+                console.log(lastWord, firstWord);
+                if(lastWord === firstWord) {
+                    this.result = '굿!!';
+                    this.word = this.value;                    
+                } else {
+                    this.result = '땡!! 다시 입력해보세요.';                    
+                }
+                this.value = '';             
+                this.$refs.answer.focus();
+            },
+        }
+    })
+
+</script>
+<script>
+    const app = new Vue({
+        el:"#root",
+    });
+</script>
+</html>
