@@ -5,12 +5,17 @@
             <div>평균 시간 : {{}}</div>
             <button @click.prevent="onReset">리셋</button>
         </div>
-
+        <lotto-ball v-if="bonus" :number="bonus"></lotto-ball>
     </div>
 </template>
 
 <script>
+    import LottoBall from './LottoBall'; // 자식 컴포넌트 불러오기
+
     export default {
+        components: { // 자식 컴포넌트 등록
+            'lotto-ball': LottoBall,
+        },
         data() { // 변수 영역
             return {
             }

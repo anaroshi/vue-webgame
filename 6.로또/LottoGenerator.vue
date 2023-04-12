@@ -73,7 +73,7 @@
                 clearTimeout();
             });            
         },
-        watch: { // 감시를 원하는 데이터를 지정하여 감시하는 기능
+        watch: { // 감시를 원하는 데이터를 지정하여 감시하는 기능(되도록 안쓰는 방향으로)
             // winBalls(value, oldValue) {
             //     console.log(value, oldValue);
             //     if(value.length === 0) {
