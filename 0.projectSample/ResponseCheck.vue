@@ -10,9 +10,12 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex';
+    import store from './store';
     import LottoBall from './LottoBall'; // 자식 컴포넌트 불러오기
 
     export default {
+        store,
         components: { // 자식 컴포넌트 등록
             'lotto-ball': LottoBall,
         },
@@ -38,7 +41,7 @@
         },
         mounted() { // 화면에 뿌려지는 것
             console.log("mounted");
-         },
+        },
         beforeUpdate() {
             console.log("beforeUpdate");
         },
