@@ -66,8 +66,7 @@ const plantMine = (row, cell, mine) => {
 
 export default new Vuex.Store({ // import store from './store';
     state: {
-        tableData: [
-        ],
+        tableData: [],
         data: {
             row: 0,
             cell: 0,

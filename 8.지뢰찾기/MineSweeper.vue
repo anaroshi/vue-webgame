@@ -9,7 +9,8 @@
 
 <script>
     import {mapState} from 'vuex';
-    import store, {OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL, INCREMENT_TIMER} from './store';
+    
+    import store, {INCREMENT_TIMER} from './store';
     import TableComponent from './TableComponent'; // 자식 컴포넌트 불러오기
     import MineForm from './MineForm';
 
@@ -20,11 +21,7 @@
         components: { // 자식 컴포넌트 등록
             'table-component': TableComponent,
             'mine-form': MineForm,
-        },
-        data() { // 변수 영역
-            return {
-            }
-        },
+        },        
         computed: { // 계산 영역
             ...mapState(['timer', 'result', 'halted']),
         },
