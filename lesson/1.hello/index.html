@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLO</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+    <hr>
+    <div id="app-2">
+        <span v-bind:title="message">
+            내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title를 볼 수 있습니다!
+        </span>
+    </div>
+    <hr>
+    <div id="app-3">
+        <p v-if="seen">이제 나를 볼수 있어요.</p>
+    </div>
+    <hr>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos" v-bind:key="todo.key">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+    <hr>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reversMessage">메시지 뒤집기</button>
+    </div>
+    <hr>
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+    <hr>
+    <div id="app-7">
+        <ol>
+            <todo-item
+                v-for='item in groceryList' 
+                v-bind:todo='item'
+                v-bind:key='item.id'
+            ></todo-item>
+            <todo-item1></todo-item1>
+            <todo-item2></todo-item2>
+        </ol>
+    </div>
+    <hr>
+    <div id="app-8">
+        <p>원본 메시지: "{{message}}"</p>
+        <p>역순으로 표시한 메시지: "{{reverseMessage}}"</p>
+    </div>
+    <hr>
+    <div id="watch-example">
+        <p>yes/no 질문을 물어보세요 : 
+            <input type="text" v-model="question">
+        </p>
+        <p>{{answer}}</p>
+    </div>
+    <hr>
+
+    <script src="./index.js"></script>
+</body>
+</html>
