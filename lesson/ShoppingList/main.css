@@ -1,0 +1,17 @@
+ul {
+    list-style-type: none;
+}
+
+li, p {
+    display: flex;
+    align-items: center;
+}
+
+.strikeout {
+    text-decoration: line-through;
+    color: #BBC2CC;
+}
+
+.priority {
+    color: #DE751F;
+}

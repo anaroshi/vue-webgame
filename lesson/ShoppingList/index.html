@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="shopping-list">
+        <div class="header">
+            <h1>{{header.toLocaleUpperCase()}}</h1>
+            <button v-if="state==='default'" class="btn btn-primary" @click="changeState('edit')">Add Item</button>
+            <button v-else class="btn btn-cancel" @click="changeState('default')">Cancel</button>
+        </div>
+        <div v-if="state === 'edit'" class="add-item-form">
+            <input type="text" v-model="newItem" placeholder="Add an Item" @keyup.enter="saveItem" ref="cursor">
+            <button class="btn btn-primary" :disabled="newItem.length === 0" @click="saveItem">Save Item</button>
+        </div>
+        <ul>
+            <li v-for="item in reversedItems"
+                :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{item.label}}</li>
+
+            <!-- <li v-for="item in reversedItems"
+                :class="[item.purchased ? 'strikeout':'', item.highPriority ? 'priority':'']" 
+                @click="togglePurchased(item)">{{item.label}}</li> -->   
+        </ul>
+        <p v-if="items.length === 0">Nice job! You've bought all your items.</p>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
+
+<!-- Vue.js Fundamentals -->
+<!-- Shopping List -->
+<!-- https://vueschool.io/lessons/getting-started-with-vuejs -->
