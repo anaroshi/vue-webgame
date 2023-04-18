@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+
+</head>
+<body>
+    <div id="app" class="ui container">
+        <h1>Notification Center</h1>
+
+        <notification-message type="error" header="Oh no!">
+            <p>Your flight has been <b>canceled</b>!</p>
+        </notification-message>
+
+        <notification-message type="success" header="Oh yeah!">
+            <p>Your flight is on time</p>
+        </notification-message>
+
+        <notification-message>
+            <p>Good Morning</p>
+        </notification-message>
+
+    </div>
+    <script type="text/x-template" id="notification-message-template">
+        <div class="ui message" :class="type" v-if="!hidden">
+            <i class="close icon" @click="hide"></i>
+            <div class="header">{{header}}</div>
+            <slot></slot>
+        </div>
+    </script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

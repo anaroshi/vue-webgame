@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Slots Fundamentals</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue.js Slots Fundamentals</h1>
+        <todo-item>
+            Buy bananas
+            <template v-slot:description>
+                <p>Bananas are good for your health!</p>
+            </template>
+            <template #button-text>Make it nice</template>
+        </todo-item>
+        <todo-item>Eat bananas</todo-item>
+        <todo-item>Celebrate!</todo-item>
+    </div>
+
+    <script type="text/x-template" id="todo-item-template">
+        <div>
+            <input type="checkbox" v-model="done">
+            <span :class="{done}">
+                <slot></slot>
+            </span>
+            <slot name="description"></slot>
+            <button><slot name="button-text">Highlight</slot></button>
+        </div>
+    </script>
+    
+    <style>
+        .done{
+            color: green;
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="app.js"></script>
+</body>
+</html>

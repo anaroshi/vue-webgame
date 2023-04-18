@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Slots Fundamentals</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <page-layout>
+        <template #header>
+            <h1>Here might be a page title</h1>
+        </template>
+
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+
+        <template #footer>
+            <p>Here's some contact info</p>
+        </template>
+    </page-layout>
+
+
+    <div id="app">
+        <h1>Vue.js Slots Fundamentals</h1>
+
+        <todo-item>
+            Buy Bananas
+            <!-- <template v-slot:desription> -->
+            <template #desription>
+                <p>
+                    Bananas are good for your health.
+                </p>
+            </template>
+
+            <template #button-text>
+                Make it rain
+            </template>
+
+        </todo-item>
+
+    </div>
+
+    <script type="text/x-template" id="todo-item-template">
+        <div>
+            <input type="checkbox" v-model="completed">
+            <span :class="{done: completed}">
+                <slot></slot>
+            </span>
+            <slot name="desription"></slot>
+            <button>
+                <slot name="button-text"></slot>
+            </button>
+        </div>
+    </script>
+    
+    <script src="app.js"></script>
+    <style>
+        .done {
+            color: green;
+            text-decoration: line-through;
+        }
+    </style>
+
+</body>
+</html>
+<!-- vueschool/vuejs-components-fundamentals -->
+<!-- https://github.com/vueschool/vuejs-components-fundamentals -->

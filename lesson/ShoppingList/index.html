@@ -4,32 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping List</title>
+    <title>Shopping List App</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div id="shopping-list">
         <div class="header">
-            <h1>{{header.toLocaleUpperCase()}}</h1>
+            <h1>{{header.toLocaleUpperCase() || 'welcome'}}</h1>
             <button v-if="state==='default'" class="btn btn-primary" @click="changeState('edit')">Add Item</button>
             <button v-else class="btn btn-cancel" @click="changeState('default')">Cancel</button>
         </div>
-        <div v-if="state === 'edit'" class="add-item-form">
-            <input type="text" v-model="newItem" placeholder="Add an Item" @keyup.enter="saveItem" ref="cursor">
-            <button class="btn btn-primary" :disabled="newItem.length === 0" @click="saveItem">Save Item</button>
+        <div v-if="state==='edit'" class="add-item-form">
+            <input type="text" @keyup.enter="saveItem" ref="cursor" v-model="newItem" placeholder="Add an item">
+            <input type="checkbox" v-model="highPriority">highPriority
+            <p>{{characterCount}} / 200</p>
+            <button class="btn btn-primary" @click="saveItem" :disabled="newItem.length < 5">Save Item</button>
         </div>
+        <!-- <a :href="newItem" target="_blank">go to the site</a> -->
         <ul>
-            <li v-for="item in reversedItems"
-                :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{item.label}}</li>
-
+            <li v-for="(item, index) in reversedItems" v-if="item.exist" :class="{strikeout: item.purchased, priority: item.highPriority}" @click='togglePurchased(item)'>
+                {{item.label}}            
+                <button @click="del(item)">삭제</button>
+            </li>
             <!-- <li v-for="item in reversedItems"
-                :class="[item.purchased ? 'strikeout':'', item.highPriority ? 'priority':'']" 
-                @click="togglePurchased(item)">{{item.label}}</li> -->   
+            :class="[item.purchased ? 'strikeout':'', item.highPriority ? 'priority':'']" 
+            @click="togglePurchased(item)">{{item.label}}</li> -->
+
+            <p v-if="items.length===0">Nice job! You've bought all your items.</p>
+        
         </ul>
-        <p v-if="items.length === 0">Nice job! You've bought all your items.</p>
+        
     </div>
+
     <script src="index.js"></script>
+
 </body>
 </html>
 

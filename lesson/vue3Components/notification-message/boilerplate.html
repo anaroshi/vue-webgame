@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+
+</head>
+<body>
+    <div id="app" class="ui container">
+        <h1>Notification Center</h1>
+                                
+        <notification-message v-for="message in messages" :type="message.key" :header="message.header">
+            <p>{{message.msg}}</p>
+        </notification-message>
+    </div>
+
+    <script type="text/x-template" id="notification-message-template">
+        <div class="ui message" :class="type" v-if="!hidden">
+            <i class="close icon" @click="hide"></i>
+            <div class="header">{{header}}</div>
+            <slot></slot>            
+        </div>
+    </script>
+
+    <script>
+    Vue.createApp({
+        data(){
+            return {
+                messages: [
+                    { key:'negative', header:'sorry!', msg:"We're sorry we can't apply that discount"},
+                    { key:'error', header:'Oops!', msg:'There were some errors with your submission'},
+                    { key:'success', header:'Wow!', msg:'Your user registration was successful.'},
+                    { key:'positive', header: 'Good luck!', msg:'You are eligible for a reward'},
+                    { key:'info', header:'Hint', msg:'Was this what you wanted?'},
+                    { key:'warning', header:'Warn!', msg:'You must register before you can do that!'},
+                    { key: null, header:null, msg:'Good Morning!!'}
+                ]
+            }
+        }
+    })
+    .component('notification-message',{
+        template: '#notification-message-template',
+        props: {
+            type: { type:String, default: 'info' },
+            header: { type:String, default: 'information'},
+            msg: { type:String, default: 'We are the one!'}
+        },
+        data(){
+            return {
+                hidden: false
+            }
+        },
+        methods: {
+            hide() {
+                this.hidden = true
+            }
+        }
+    })
+    .mount('#app')
+    </script>
+
+</body>
+</html>
