@@ -19,6 +19,9 @@
         >
       </li>
     </ul>
+    <li class="links">
+      <router-link to="/user">Dashboard</router-link>
+    </li>
   </nav>
 </template>
 
@@ -37,6 +40,12 @@ export default {
 <style scoped>
 #nav {
   display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid grey;
+  z-index: 1;
 }
 #nav a {
   font-weight: bold;
@@ -46,8 +55,10 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
 #nav a.vue-school-active-class {
+  color: #ab26ab;
+}
+#nav a.router-link-active {
   color: #ab26ab;
 }
 .nav-links {

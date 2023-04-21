@@ -4,9 +4,9 @@
       <TheNavigation />
       <!-- <transition name="slide" mode="out-in"> -->
       <!-- <transition name="moveUp"> -->
-      <transition name="fade">
-        <router-view :key="$route.path" />
-        <!-- :key="$route.path" => 같은 페이지에서 id 값만 변할때 화면 재로딩이 필요할때는 컴포넌트 이름에다 path값을 넣어준다. -->
+      <transition name="fade" mode="out-in">
+        <router-view :key="$router.path" />
+        <!-- :key="$router.path" => 같은 페이지에서 id 값만 변할때 화면 재로딩이 필요할때는 컴포넌트 이름에다 path값을 넣어준다. -->
       </transition>
     </div>
   </div>
@@ -72,5 +72,15 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.input {
+  border: 1px solid green;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.btn {
+  background-color: green;
+  color: white;
+  padding: 10px;
 }
 </style>

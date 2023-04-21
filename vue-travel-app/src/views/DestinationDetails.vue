@@ -15,7 +15,7 @@ import { routeLocationKey } from 'vue-router';
     </section>
     <section class="experiences">
       <h2>Top experiences in {{ destination.name }}</h2>
-      <div class="cards">
+      <div class="cards" id="experience">
         <div
           v-for="experience in destination.experiences"
           :key="experience.slug"
@@ -25,6 +25,7 @@ import { routeLocationKey } from 'vue-router';
             :to="{
               name: 'ExperienceDetails',
               params: { experienceSlug: experience.slug },
+              hash: '#experience',
             }"
           >
             <img
@@ -35,8 +36,8 @@ import { routeLocationKey } from 'vue-router';
           </router-link>
         </div>
       </div>
-      <router-view :key="$route.path" />
-      <!-- :key="$route.path" 자신 페이지에서 리로딩이 필요할때 사용 -->
+      <router-view :key="$router.path" />
+      <!-- :key="$router.path" 자신 페이지에서 리로딩이 필요할때 사용 -->
     </section>
   </div>
 </template>
@@ -76,6 +77,9 @@ img {
   width: 100%;
   max-height: 400px;
   margin-left: 40px;
+}
+.experiences {
+  pad: 40px 0;
 }
 .destination-details {
   display: flex;
